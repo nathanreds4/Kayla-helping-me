@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #ball {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+    </style>
+    <title>Bouncing Ball</title>
+</head>
+<body>
+    <div id="ball">
+        <img src="../ball.jpeg" alt="ball" />
+    </div>
+
+    <script>
+        // Get the ball element
+        var ball = document.getElementById('ball');
+
+        // Set initial position and velocity
+        var x = 50;
+        var y = 50;
+        var vx = 5; // X-axis velocity
+        var vy = 5; // Y-axis velocity
+
+        // Update function to animate the ball
+        function update() {
+            // Update position
+            x += vx;
+            y += vy;
+
+            // Bounce off the walls
+            if (x + ball.offsetWidth > window.innerWidth || x < 0) {
+                vx = -vx;
+            }
+            if (y + ball.offsetHeight > window.innerHeight || y < 0) {
+                vy = -vy;
+            }
+
+            // Set the new position
+            ball.style.left = x + 'px';
+            ball.style.top = y + 'px';
+
+            // Call update function again
+            requestAnimationFrame(update);
+        }
+
+        // Start the animation
+        update();
+    </script>
+</body>
+</html>
